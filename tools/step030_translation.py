@@ -188,9 +188,6 @@ def summarize(info, transcript, target_language='简体中文', method = 'LLM'):
             logger.warning(f'总结失败\n{e}')
             time.sleep(1)
             
-    if not success:
-        raise Exception(f'总结失败')
-            
     messages = [
         {'role': 'system',
             'content': f'You are a native speaker of {target_language}. Please translate the title and summary into {target_language} in JSON format. ```json\n{{"title": "the {target_language} title of the video", "summary", "the {target_language} summary of the video", "tags": [list of tags in {target_language}]}}\n```.'},
