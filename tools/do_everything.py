@@ -61,7 +61,7 @@ def process_video(info, root_folder, resolution,
     return False, None
 
 
-def do_everything(root_folder, url, num_videos=5, resolution='1080p',
+def do_everything(root_folder, video_file=None, url=None, num_videos=5, resolution='1080p',
                   demucs_model='htdemucs_ft', device='auto', shifts=5, 
                   asr_method='WhisperX', whisper_model='large', batch_size=32, diarization=False, whisper_min_speakers=None, whisper_max_speakers=None, 
                   translation_method = 'LLM',translation_target_language='简体中文', 
@@ -71,9 +71,6 @@ def do_everything(root_folder, url, num_videos=5, resolution='1080p',
                   max_workers=3, max_retries=5):
     success_list = []
     fail_list = []
-
-    url = url.replace(' ', '').replace('，', '\n').replace(',', '\n')
-    urls = [_ for _ in url.split('\n') if _]
     
     # 使用线程池执行任务
     with ThreadPoolExecutor() as executor:
@@ -93,10 +90,13 @@ def do_everything(root_folder, url, num_videos=5, resolution='1080p',
         # Waiting for the get_info_list_from_url task to complete and storing its result
         # video_info_list = video_info_future.result()
     out_video = None
-    if url.endswith('.mp4'):
+    if video_file is not None or url.endswith('.mp4'):
         import shutil
         # 获取原始视频文件名（不带路径）
-        original_file_name = os.path.basename(url)
+        if video_file is not None:
+          original_file_name = os.path.basename(video_file)
+        else:
+          original_file_name = os.path.basename(url)
         
         # 去除文件扩展名，生成文件夹名称
         new_folder_name = os.path.splitext(original_file_name)[0]
@@ -108,7 +108,10 @@ def do_everything(root_folder, url, num_videos=5, resolution='1080p',
         os.makedirs(new_folder_path, exist_ok=True)
         
         # 构建原始文件的完整路径
-        original_file_path = os.path.join(root_folder, original_file_name)
+        if(video_file):
+          original_file_path = video_file
+        else:
+          original_file_path = os.path.join(root_folder, original_file_name)
         
         # 构建新位置的完整路径
         new_file_path = os.path.join(new_folder_path, "download.mp4")
@@ -126,10 +129,14 @@ def do_everything(root_folder, url, num_videos=5, resolution='1080p',
                                     subtitles, speed_up, fps, background_music, bgm_volume, video_volume,
                                     target_resolution, max_retries)
         if success:
-            return 'Success', out_video
+            success_list.append("Success")
+            out_video = output_video
         else:
-            return 'Fail', None
+            fail_list.append("Failed")
     else:
+        url = url.replace(' ', '').replace('，', '\n').replace(',', '\n')
+        urls = [_ for _ in url.split('\n') if _]
+        
         for info in get_info_list_from_url(urls, num_videos):
             success, output_video = process_video(info, root_folder, resolution, 
                                     demucs_model, device, shifts, 

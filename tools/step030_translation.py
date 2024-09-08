@@ -165,8 +165,9 @@ def summarize(info, transcript, target_language='简体中文', method = 'LLM'):
             else:
                 raise Exception('Invalid method')
             summary = response.replace('\n', '')
-            if '视频标题' in summary:
-                raise Exception("包含“视频标题”")
+            # These are empty in uploaded videos
+            # if '视频标题' in summary:
+            #     raise Exception("包含“视频标题”")
             logger.info(summary)
             summary = re.findall(r'\{.*?\}', summary)[0]
             summary = json.loads(summary)
@@ -174,11 +175,12 @@ def summarize(info, transcript, target_language='简体中文', method = 'LLM'):
                 'title': summary['title'].replace('title:', '').strip(),
                 'summary': summary['summary'].replace('summary:', '').strip()
             }
-            if summary['title'] == '' or summary['summary'] == '':
-                raise Exception('Invalid summary')
+            # These are empty in uploaded videos
+            # if summary['title'] == '' or summary['summary'] == '':
+            #     raise Exception('Invalid summary')
             
-            if 'title' in summary['title']:
-                raise Exception('Invalid summary')
+            # if 'title' in summary['title']:
+            #     raise Exception('Invalid summary')
             success = True
             break
         except Exception as e:
