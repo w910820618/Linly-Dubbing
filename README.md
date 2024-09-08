@@ -6,7 +6,7 @@
 [![madewithlove](https://img.shields.io/badge/made_with-%E2%9D%A4-red?style=for-the-badge&labelColor=orange)](https://github.com/Kedreamix/Linly-Dubbing)
 <img src="docs/linly_logo.png" /><br>
 
-[![Open In Colab](https://img.shields.io/badge/Colab-F9AB00?style=for-the-badge&logo=googlecolab&color=525252)](https://colab.research.google.com/github/Kedreamix/Linly-Dubbing/blob/main/colab_webui.ipynb)
+[![Open In Colab](https://img.shields.io/badge/Colab-F9AB00?style=for-the-badge&logo=googlecolab&color=525252)](https://colab.research.google.com/github/pethum-upwork/Linly-Dubbing/blob/main/colab_webui.ipynb)
 [![Licence](https://img.shields.io/badge/LICENSE-Apache-red.svg?style=for-the-badge)](https://github.com/Kedreamix/Linly-Talker/blob/main/LICENSE)
 
 [**English**](./README.md) | [**中文简体**](./README_zh.md)
