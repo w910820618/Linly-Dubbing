@@ -109,7 +109,7 @@ Follow the steps below to install and configure `Linly-Dubbing`.
 
 > [!NOTE]
 >
-> A Colab script is also available for an online experience: [Linly-Dubbing Colab](https://colab.research.google.com/github/Kedreamix/Linly-Dubbing/blob/main/colab_webui.ipynb).
+> A Colab script is also available for an online experience: [Linly-Dubbing Colab](https://colab.research.google.com/github/pethum-upwork/Linly-Dubbing/blob/main/colab_webui.ipynb).
 
 ### 1. Clone the Repository
 
@@ -117,7 +117,7 @@ First, clone the `Linly-Dubbing` repository to your local machine and initialize
 
 ```bash
 # Clone the project to your local machine
-git clone https://github.com/Kedreamix/Linly-Dubbing.git --depth 1
+git clone https://github.com/pethum-upwork/Linly-Dubbing.git --depth 1
 
 # Navigate to the project directory
 cd Linly-Dubbing
