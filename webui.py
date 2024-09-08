@@ -13,6 +13,7 @@ full_auto_interface = gr.Interface(
     fn=do_everything,
     inputs=[
         gr.Textbox(label='视频输出文件夹', value='videos'),
+        gr.Video(label='上传视频', sources=['upload']),
         gr.Textbox(label='视频URL', placeholder='请输入Youtube或Bilibili的视频、播放列表或频道的URL', 
                    value='https://www.bilibili.com/video/BV1kr421M7vz/'),
         gr.Slider(minimum=1, maximum=100, step=1, label='下载视频数量', value=5),
