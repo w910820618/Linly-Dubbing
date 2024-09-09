@@ -78,8 +78,8 @@ def valid_translation(text, translation):
     #     if len(translation) > 15:
     #         return False, f'Only translate the following sentence and give me the result.'
     
-    if len(translation) > len(text)*0.75:
-        return False, f'The translation is too long. Only translate the following sentence and give me the result.'
+    # if len(translation) > len(text)*0.75:
+    #     return False, f'The translation is too long. Only translate the following sentence and give me the result.'
     
     forbidden = ['翻译', '译文', '这句', '\n', '简体中文', '中文', 'translate', 'Translate', 'translation', 'Translation']
     translation = translation.strip()
